@@ -1,35 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
-import localFont from "next/font/local";
 import Footer from "@/components/footer";
 import NavBar, { NavBarProps } from "@/components/navbar";
-
-const lloydsFont = localFont({
-  src: [
-    {
-      path: "../../public/fonts/lloyds_bank_jack-boldWEB.woff2",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/lloyds_bank_jack-lightWEB.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/lloyds_bank_jack-mediumWEB.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/lloyds_bank_jack-regularWEB.woff2",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-lloyds",
-});
+import { AccountDataProvider } from "@/hooks/useAccountData";
+import { lloydsFont } from "./font";
 
 export const metadata: Metadata = {
   title: "Lloyds Payments Demo",
@@ -43,17 +18,18 @@ export default function RootLayout({
 }>) {
   const navbarProps: NavBarProps = {
     name: "Olivia Crawford",
-    business_name: "Your Business Ltd",
   };
   return (
     <html lang="en" className="bg-slate-100">
       <body className={lloydsFont.className}>
-        <Header />
-        <NavBar {...navbarProps} />
-        <main className="p-8">
-        {children}
-        </main>
-        <Footer />
+        <AccountDataProvider>
+          <div className="sticky top-0">
+            <Header />
+            <NavBar {...navbarProps} />
+          </div>
+          <main className="p-8">{children}</main>
+          <Footer />
+        </AccountDataProvider>
       </body>
     </html>
   );

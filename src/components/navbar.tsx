@@ -1,11 +1,15 @@
+"use client";
+
+import { useAccountData } from "@/hooks/useAccountData";
 import { ChevronDown, Home, LockIcon, Mail } from "lucide-react";
 
 export interface NavBarProps {
   name: string;
-  business_name: string;
 }
 
 const NavBar = (props: NavBarProps) => {
+  const accountData = useAccountData();
+
   return (
     <div className="flex flex-col w-full bg-white">
       <div className="flex flex-row h-18 w-full border-b-2 border-gray px-6 py-2 justify-between items-center">
@@ -25,7 +29,7 @@ const NavBar = (props: NavBarProps) => {
       </div>
       <div className="flex flex-row h-18 w-full border-b-2 border-gray px-6 py-2 justify-between items-center">
         <div>
-          <span>{props.business_name}</span>
+          <span>{accountData.business_name}</span>
         </div>
         <div className="flex flex-row gap-6">
           <Home className="text-lloyds-dark-green" />
