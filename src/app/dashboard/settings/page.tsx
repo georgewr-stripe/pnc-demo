@@ -1,8 +1,9 @@
-import { ConnectPaymentMethodSettings } from "@stripe/react-connect-js"
+"use client";
 
+import { ConnectPaymentMethodSettings } from "@stripe/react-connect-js";
 
 const PaymentSettings = () => {
-    return <ConnectPaymentMethodSettings />
-}
+  return <ConnectPaymentMethodSettings />;
+};
 
-export default PaymentSettings
+export default PaymentSettings;
