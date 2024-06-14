@@ -50,9 +50,8 @@ const Menu = (props: MenuProps) => {
         <div className="w-8 h-[2px] bg-lloyds-light-green"></div>
       </div>
       {Object.entries(items).map(([title, subtitles], i) => (
-        <div className="flex flex-col">
+        <div className="flex flex-col" key={title}>
           <div
-            key={title}
             onClick={() => handleSelect(title)}
             className={
               "flex flex-row items-center py-2 px-3 border-t-[1px] border-gray-700 justify-between " +

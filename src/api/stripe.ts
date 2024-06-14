@@ -6,8 +6,12 @@ if (!SECRET_KEY) {
   throw "Stripe Secret Key not defined!";
 }
 
-const stripe = new Stripe(SECRET_KEY, {
-  // @ts-ignore
-  apiVersion: `2024-04-10; unified_accounts_beta=v1`,
-});
+export const loadStripe = (beta: string = "unified_accounts_beta=v1") => {
+  return new Stripe(SECRET_KEY, {
+    // @ts-ignore
+    apiVersion: `2024-04-10; ${beta};`,
+  });
+};
+
+const stripe = loadStripe();
 export default stripe;

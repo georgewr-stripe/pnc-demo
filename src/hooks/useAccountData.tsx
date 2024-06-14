@@ -10,18 +10,23 @@ export interface AccountData {
 
 interface AccountDataContextType extends AccountData {
   setAccountData: (data: Partial<Omit<AccountData, "setAccountData">>) => void;
+  loaded: boolean;
+  loggedIn: boolean;
 }
 
 const AccountDataContext = React.createContext<AccountDataContextType>({
   business_name: "Your Business Ltd",
   setAccountData: () => null,
+  loaded: false,
+  loggedIn: false,
 });
 
 function AccountDataProvider(props: PropsWithChildren) {
-  const [state, setState] = useLocalStorage<AccountData>(
+  const [state, setState, loaded] = useLocalStorage<AccountData>(
     "lloyds-demo-account-data",
     { business_name: "Your Business Ltd" }
   );
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
   const setAccountData = (
     data: Partial<Omit<AccountData, "setAccountData">>
@@ -29,9 +34,16 @@ function AccountDataProvider(props: PropsWithChildren) {
     setState((prev) => ({ ...prev, ...data }));
   };
 
-  React.useEffect(() => console.log(state), [state]);
+  React.useEffect(() => {
+    if (loaded) {
+      setLoggedIn(!!state.account_id);
+    }
+  }, [state, loaded]);
+
   return (
-    <AccountDataContext.Provider value={{ ...state, setAccountData }}>
+    <AccountDataContext.Provider
+      value={{ ...state, setAccountData, loaded, loggedIn }}
+    >
       {props.children}
     </AccountDataContext.Provider>
   );

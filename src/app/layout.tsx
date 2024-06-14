@@ -21,13 +21,14 @@ export default function RootLayout({
   };
   return (
     <html lang="en" className="bg-slate-100">
+      <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={lloydsFont.className}>
         <AccountDataProvider>
-          <div className="sticky top-0">
+          <div className="sticky top-0 z-50">
             <Header />
             <NavBar {...navbarProps} />
           </div>
-          <main className="p-8">{children}</main>
+          <main className="p-8 mb-16">{children}</main>
           <Footer />
         </AccountDataProvider>
       </body>

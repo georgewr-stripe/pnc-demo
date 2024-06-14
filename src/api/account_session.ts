@@ -1,9 +1,10 @@
 "use server";
 
-import stripe from "./stripe";
+import { loadStripe } from "./stripe";
 
 export async function createAccountSession(account_id: string) {
-  const session = await stripe.accountSessions.create({
+  const session = await loadStripe().accountSessions.create({
+  // "embedded_connect_beta=v2"
     account: account_id,
     components: {
       payments: {
@@ -31,6 +32,9 @@ export async function createAccountSession(account_id: string) {
           edit_payout_schedule: true,
         },
       },
+      //   payment_method_settings: {
+      //     enabled: true,
+      //   },
     },
   });
   return { client_secret: session.client_secret };

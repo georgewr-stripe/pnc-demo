@@ -9,3 +9,9 @@ export type CreateAccountProps = {
   >;
   person: Stripe.AccountCreatePersonParams;
 };
+
+export interface PaymentLinkParams {
+  amount: number;
+  description: string;
+  quantity: number;
+}

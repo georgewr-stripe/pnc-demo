@@ -1,7 +1,9 @@
 "use client";
 
 import { useAccountData } from "@/hooks/useAccountData";
-import { ChevronDown, Home, LockIcon, Mail } from "lucide-react";
+import { ChevronDown, Gauge, Home, LockIcon, Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 export interface NavBarProps {
   name: string;
@@ -9,6 +11,7 @@ export interface NavBarProps {
 
 const NavBar = (props: NavBarProps) => {
   const accountData = useAccountData();
+  const router = useRouter();
 
   return (
     <div className="flex flex-col w-full bg-white">
@@ -18,19 +21,38 @@ const NavBar = (props: NavBarProps) => {
           <div className="flex flex-row items-center">
             <LockIcon className="h-3 w-3 mr-1" />
             <span className="text-xs">
-              {" "}
               Last logged in yesterday at 12:45 pm
             </span>
           </div>
         </div>
-        <div>
+        <div
+          className="cursor-pointer"
+          onClick={() =>
+            accountData.setAccountData({
+              account_id: "",
+              business_name: "Your Business Ltd",
+            })
+          }
+        >
           <span className="text-lloyds-dark-green">Log off</span>
         </div>
       </div>
       <div className="flex flex-row h-18 w-full border-b-2 border-gray px-6 py-2 justify-between items-center">
-        <div>
+        <div className="flex flex-row gap-4 items-center">
           <span>{accountData.business_name}</span>
+          {accountData.loggedIn ? (
+            <div
+              className="flex flex-row p-1.5 cursor-pointer bg-lloyds-light-green text-white"
+              onClick={() => router.push("/dashboard/payments")}
+            >
+              <span>Payments Dashboard</span>
+              <Gauge className="ml-2" />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
+
         <div className="flex flex-row gap-6">
           <Home className="text-lloyds-dark-green" />
           <div className="flex flex-row">

@@ -1,5 +1,6 @@
 "use client";
 
+import CreatePayment from "@/components/create_payment/createPayment";
 import {
   ConnectPayments,
   ConnectNotificationBanner,
@@ -8,6 +9,7 @@ import {
 const Payments = () => {
   return (
     <div>
+      <CreatePayment />
       <ConnectNotificationBanner
         collectionOptions={{
           fields: "eventually_due",

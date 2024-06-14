@@ -27,7 +27,7 @@ const ConnectJS = (props: PropsWithChildren) => {
   }, [account_id]);
 
   const cerateStripeConnectInstance = React.useCallback(() => {
-    console.log(lloydsFont)
+    console.log(lloydsFont);
     return loadConnectAndInitialize({
       publishableKey: PUBLIC_KEY,
       fetchClientSecret,
@@ -37,10 +37,16 @@ const ConnectJS = (props: PropsWithChildren) => {
           buttonPrimaryColorBackground: "#77BA00",
           buttonPrimaryColorText: "#FFFFFF",
           borderRadius: "0px",
-          fontFamily: 'sans-serif'
-
-    },
+          fontFamily: lloydsFont.style.fontFamily,
+        },
       },
+      fonts: [
+        {
+          family: lloydsFont.style.fontFamily,
+          src: "https://lloyds-demo.vercel.app/fonts/lloyds_bank_jack-regularWEB.ttf",
+          weight: "400",
+        },
+      ],
     });
   }, [fetchClientSecret]);
 
@@ -54,7 +60,7 @@ const ConnectJS = (props: PropsWithChildren) => {
   }, [fetchClientSecret]);
 
   if (!stripeConnectInstance) {
-    return <></>;
+    return <span>Loading...</span>;
   }
 
   return (
