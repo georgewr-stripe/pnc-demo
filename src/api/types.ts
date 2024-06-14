@@ -15,3 +15,7 @@ export interface PaymentLinkParams {
   description: string;
   quantity: number;
 }
+
+export interface MOTOPaymentParams {
+  amount: number;
+}

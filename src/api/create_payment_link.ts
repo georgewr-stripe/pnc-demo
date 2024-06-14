@@ -1,6 +1,5 @@
 "use server";
 
-import Stripe from "stripe";
 import stripe from "./stripe";
 import { PaymentLinkParams } from "./types";
 

@@ -1,26 +1,47 @@
-import { Elements, PaymentElement } from "@stripe/react-stripe-js";
-import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
+"use client";
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || ""
-);
+import { Elements } from "@stripe/react-stripe-js";
+import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
+import VirtualTerminalCheckout from "./virtualTerminalCheckout";
+import { useAccountData } from "@/hooks/useAccountData";
+import React from "react";
+import Stripe from "stripe";
+import { CircleCheckBig } from "lucide-react";
 
 const VirtualTerminal = () => {
+  const { account_id } = useAccountData();
+  const [intent, setIntent] =
+    React.useState<Stripe.Response<Stripe.PaymentIntent>>();
+
+  const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "",
+    { stripeAccount: account_id }
+  );
+
   const options: StripeElementsOptions = {
     mode: "payment",
     amount: 1099,
     currency: "gbp",
+    payment_method_types: ["card"],
+    paymentMethodCreation: "manual",
   };
-  return (
-    <Elements stripe={stripePromise} options={options}>
-      <div className="flex flex-col gap-3">
-        <PaymentElement />
-        <div className="bg-lloyds-light-green text-white p-3">
-          <span>Submit</span>
-        </div>
+
+  if (intent) {
+    return (
+      <div className="flex flex-col text-lloyds-green items-center gap-4">
+        <CircleCheckBig className="size-8"/>
+        <span className="text-lg">Payment Successful</span>
       </div>
-    </Elements>
-  );
+    );
+  } else {
+    return (
+      <Elements stripe={stripePromise} options={options}>
+        <div className="flex flex-col gap-3">
+          <VirtualTerminalCheckout setIntent={setIntent} />
+        </div>
+      </Elements>
+    );
+  }
 };
 
 export default VirtualTerminal;
