@@ -84,9 +84,38 @@ const createPayments = async (account_id: string, customers: string[]) => {
   await Promise.all(payments);
 };
 
-const createPayouts = async (account_id: string) => {
+const getBalance = async (account_id: string) => {
   const balance = await stripe.balance.retrieve({ stripeAccount: account_id });
-  console.log(balance.available);
+  return balance.available.find((b) => b.currency == "gbp")?.amount || 0;
+};
+
+const sleep = (time: number) => {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, time);
+  });
+};
+
+const createPayouts = async (account_id: string) => {
+  let balanceAvailable = false;
+  let noLoops = 0;
+  const maxLoops = 10;
+  const sleepTime = 1000;
+  const payoutTotal = payoutAmounts.reduce(
+    (partialSum, a) => partialSum + a,
+    0
+  );
+
+  while (!balanceAvailable && noLoops <= maxLoops) {
+    const balance = await getBalance(account_id);
+    balanceAvailable = balance >= payoutTotal;
+    console.log("balance: ", balance);
+    console.log("balanceAvailable: ", balanceAvailable);
+    if (!balanceAvailable) {
+      await sleep(sleepTime);
+    }
+    noLoops += 1;
+  }
+
   await Promise.all(
     payoutAmounts.map((amount) =>
       stripe.payouts.create(
