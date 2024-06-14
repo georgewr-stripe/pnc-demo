@@ -108,8 +108,8 @@ const createPayouts = async (account_id: string) => {
   while (!balanceAvailable && noLoops <= maxLoops) {
     const balance = await getBalance(account_id);
     balanceAvailable = balance >= payoutTotal;
-    console.log("balance: ", balance);
-    console.log("balanceAvailable: ", balanceAvailable);
+    // console.log("balance: ", balance);
+    // console.log("balanceAvailable: ", balanceAvailable);
     if (!balanceAvailable) {
       await sleep(sleepTime);
     }
