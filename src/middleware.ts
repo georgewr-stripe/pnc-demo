@@ -4,7 +4,7 @@ export function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'nonce-${nonce}' https://connect-js.stripe.com https://js.stripe.com 'unsafe-eval' 'unsafe-inline';
+    script-src 'self' https://connect-js.stripe.com https://js.stripe.com 'unsafe-eval' 'unsafe-inline';
     style-src 'self' sha256-0hAheEzaMe6uXIKV4EehS9pu1am1lj/KnnzrOYqckXk= 'unsafe-inline';
     img-src 'self' blob: data: https://*.stripe.com;
     frame-src 'self' https://connect-js.stripe.com https://js.stripe.com;
