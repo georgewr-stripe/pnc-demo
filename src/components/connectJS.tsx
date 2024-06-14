@@ -37,14 +37,14 @@ const ConnectJS = (props: PropsWithChildren) => {
           buttonPrimaryColorBackground: "#77BA00",
           buttonPrimaryColorText: "#FFFFFF",
           borderRadius: "0px",
-          fontFamily: "lloyds sans-serif",
+          fontFamily: "lloyds",
         },
       },
       fonts: [
         {
           family: "lloyds",
-          src: "url('https://lloyds-demo.vercel.app/fonts/lloyds_bank_jack-regularWEB.ttf')",
-          weight: "400",
+          src: "url(https://lloyds-demo.vercel.app/fonts/lloyds_bank_jack-regularWEB.ttf)",
+          weight: "500",
         },
       ],
     });

@@ -77,7 +77,7 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
         errorMessage={"Please enter an amount > £1"}
         type={"currency"}
       />
-      <PaymentElement />
+      <PaymentElement className="pt-2" />
       {loading ? (
         <div className="flex flex-row gap-3 justify-between bg-lloyds-light-green text-white p-3 mt-2">
           <span>Loading...</span>
@@ -88,7 +88,7 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
           className="flex flex-row gap-3 justify-between bg-lloyds-light-green text-white p-3 mt-2"
           onClick={handleSubmit}
         >
-          <span>Submit</span>
+          <span className="cursor-pointer">Submit</span>
           <ChevronRight />
         </div>
       )}

@@ -24,6 +24,20 @@ const VirtualTerminal = () => {
     currency: "gbp",
     payment_method_types: ["card"],
     paymentMethodCreation: "manual",
+    appearance: {
+        variables: {
+            fontFamily: 'lloyds',
+            colorPrimary: '#016a4d',
+            borderRadius: '0px'
+        }
+    },
+    fonts: [
+        {
+          family: "lloyds",
+          src: "url(https://lloyds-demo.vercel.app/fonts/lloyds_bank_jack-regularWEB.ttf)",
+          weight: "500",
+        },
+      ],
   };
 
   if (intent) {
