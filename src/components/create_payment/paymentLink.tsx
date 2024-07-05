@@ -6,11 +6,6 @@ import { PaymentLinkParams } from "@/api/types";
 import { ChevronRight, ExternalLink, RefreshCw } from "lucide-react";
 import createPaymentLink from "@/api/create_payment_link";
 
-const formatter = new Intl.NumberFormat("en-GB", {
-  style: "currency",
-  currency: "GBP",
-});
-
 const PaymentLink = () => {
   const [data, setData] = React.useState<PaymentLinkParams>({
     amount: 1000,
@@ -58,9 +53,13 @@ const PaymentLink = () => {
     <div className="py-4">
       {link ? (
         <div className="bg-lloyds-light-green cursor-pointer p-3">
-          <a className="text-white flex flex-row justify-between w-full gap-3 items-center" href={link.url} target="_blank">
+          <a
+            className="text-white flex flex-row justify-between w-full gap-3 items-center"
+            href={link.url}
+            target="_blank"
+          >
             <pre>{link.url}</pre>
-            <ExternalLink className="size-5"/>
+            <ExternalLink className="size-5" />
           </a>
         </div>
       ) : (

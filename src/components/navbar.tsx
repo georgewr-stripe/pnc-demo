@@ -2,7 +2,7 @@
 
 import { useAccountData } from "@/hooks/useAccountData";
 import { ChevronDown, Gauge, Home, LockIcon, Mail } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 export interface NavBarProps {
@@ -12,6 +12,23 @@ export interface NavBarProps {
 const NavBar = (props: NavBarProps) => {
   const accountData = useAccountData();
   const router = useRouter();
+  const pathname = usePathname();
+
+  const className =
+    "flex flex-row p-1.5 cursor-pointer bg-lloyds-light-green text-white " +
+    (pathname.startsWith("/dashboard") ? "" : " animate-pulse");
+
+  const dashboardButton = accountData.loggedIn ? (
+    <div
+      className={className}
+      onClick={() => router.push("/dashboard/payments")}
+    >
+      <span>Payments Dashboard</span>
+      <Gauge className="ml-2" />
+    </div>
+  ) : (
+    <></>
+  );
 
   return (
     <div className="flex flex-col w-full bg-white">
@@ -34,23 +51,13 @@ const NavBar = (props: NavBarProps) => {
             })
           }
         >
-          <span className="text-lloyds-dark-green">Log off</span>
+          <span className="text-lloyds-dark-green">Reset Stripe Onboarding</span>
         </div>
       </div>
       <div className="flex flex-row h-18 w-full border-b-2 border-gray px-6 py-2 justify-between items-center">
         <div className="flex flex-row gap-4 items-center">
           <span>{accountData.business_name}</span>
-          {accountData.loggedIn ? (
-            <div
-              className="flex flex-row p-1.5 cursor-pointer bg-lloyds-light-green text-white"
-              onClick={() => router.push("/dashboard/payments")}
-            >
-              <span>Payments Dashboard</span>
-              <Gauge className="ml-2" />
-            </div>
-          ) : (
-            <></>
-          )}
+          {dashboardButton}
         </div>
 
         <div className="flex flex-row gap-6">

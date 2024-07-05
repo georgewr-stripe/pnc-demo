@@ -38,6 +38,7 @@ const DashboardLayout = (props: PropsWithChildren) => {
   return (
     <div className="flex flex-row justify-around w-full gap-4 pb-16">
       <Menu {...menu} />
+
       <div className="flex flex-col gap-4 grow max-w-[70vw] max-h-[90vh] overflow-scroll h-full">
         <ConnectJS>{props.children}</ConnectJS>
       </div>

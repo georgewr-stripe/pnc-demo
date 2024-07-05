@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
-    "@stripe/connect-js": "^3.3.6",
+    "@stripe/connect-js": "^3.3.8-beta-1",
     "@stripe/react-connect-js": "^3.3.11-beta-1",
     "@stripe/react-stripe-js": "^2.7.1",
     "@stripe/stripe-js": "^3.5.0",

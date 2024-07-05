@@ -4,11 +4,12 @@ import { createAccount } from "@/api/accounts";
 import { CreateAccountProps } from "@/api/types";
 import Input from "@/components/input";
 import { useAccountData } from "@/hooks/useAccountData";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { defaultAccountInfo } from "../data";
 
 const person: CreateAccountProps["person"] = {
   first_name: "Olivia",
@@ -119,46 +120,35 @@ const SignUp = () => {
   const [inputAccountInfo, setInputAccountInfo] =
     React.useState<InputAccountInfo>();
   const [loading, setLoading] = React.useState(false);
-  const [valid, setValid] = React.useState(true);
-
-  const handleChange = React.useCallback((info: Partial<InputAccountInfo>) => {
-    if (Object.values(info).every(Boolean)) {
-      setValid(true);
-    }
-    setInputAccountInfo((p) => ({ ...p, ...info }));
-  }, []);
+  const [showInfo, setShowInfo] = React.useState(false);
 
   const beginOnboarding = async (accountInfo: CreateAccountProps) => {
-    if (!inputAccountInfo?.company_name) {
-      setValid(false);
-    } else {
-      setLoading(true);
-      const data: CreateAccountProps = {
-        ...accountInfo,
-        account: {
-          ...accountInfo.account,
-          business_profile: {
-            ...accountInfo.account.business_profile,
-            name: inputAccountInfo.company_name,
-          },
-          company: {
-            ...accountInfo.account.company,
-            name: inputAccountInfo.company_name,
-          },
+    setLoading(true);
+    const data: CreateAccountProps = {
+      ...accountInfo,
+      account: {
+        ...accountInfo.account,
+        business_profile: {
+          ...accountInfo.account.business_profile,
+          name: defaultAccountInfo.business_name,
         },
-      };
-      const { account_id } = await createAccount(data);
-      setAccountData({
-        account_id,
-        business_name: inputAccountInfo.company_name,
-      });
-      router.push("/onboard");
-    }
+        company: {
+          ...accountInfo.account.company,
+          name: defaultAccountInfo.business_name,
+        },
+      },
+    };
+    const { account_id } = await createAccount(data);
+    setAccountData({
+      account_id,
+      business_name: defaultAccountInfo.business_name,
+    });
+    router.push("/onboard");
   };
 
   return (
     <div>
-      <div className="max-w-sm m-auto p-4 bg-white border-t-2 border-lloyds-green mb-4">
+      {/* <div className="max-w-sm m-auto p-4 bg-white border-t-2 border-lloyds-green mb-4">
         <Input
           title="Company Name"
           type="text"
@@ -167,8 +157,8 @@ const SignUp = () => {
           errorMessage="Please enter a company name"
           valid={!!inputAccountInfo?.company_name || valid}
         />
-      </div>
-      <div className="flex flex-row m-auto h-auto justify-evenly">
+      </div> */}
+      <div className="flex flex-row m-auto h-auto justify-center gap-2">
         {onboardingTypes.map((type, i) => {
           return (
             <div
@@ -176,8 +166,25 @@ const SignUp = () => {
               className="flex flex-col border-t-2 border-lloyds-green bg-white min-w-60 items-center"
             >
               <div className="flex flex-col p-4">
-                <span className="font-bold text-lloyds-green">{type.name}</span>
-                <code className="max-h-[50vh] overflow-scroll">
+                <div
+                  className="flex flex-row cursor-pointer justify-between"
+                  onClick={() => setShowInfo((p) => !p)}
+                >
+                  <span className="font-bold text-lloyds-green">
+                    {type.name}
+                  </span>
+                  {showInfo ? (
+                    <ChevronDown className="lloyds-green" />
+                  ) : (
+                    <ChevronRight className="lloyds-green" />
+                  )}
+                </div>
+                <code
+                  className={
+                    "overflow-scroll  transition-all duration-500 ease-in-out " +
+                    (showInfo ? "max-h-[50vh]" : "max-h-0 invisible")
+                  }
+                >
                   <SyntaxHighlighter
                     customStyle={{ backgroundColor: "white" }}
                     language="json"

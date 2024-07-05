@@ -1,9 +1,17 @@
 "use client";
 
-import { ConnectPaymentMethodSettings } from "@stripe/react-connect-js";
+import {
+  ConnectNotificationBanner,
+  ConnectPaymentMethodSettings,
+} from "@stripe/react-connect-js";
 
 const PaymentSettings = () => {
-  return <ConnectPaymentMethodSettings />;
+  return (
+    <div>
+      <ConnectNotificationBanner />
+      <ConnectPaymentMethodSettings />
+    </div>
+  );
 };
 
 export default PaymentSettings;

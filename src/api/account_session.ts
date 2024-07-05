@@ -3,8 +3,9 @@
 import { loadStripe } from "./stripe";
 
 export async function createAccountSession(account_id: string) {
-  const session = await loadStripe().accountSessions.create({
-  // "embedded_connect_beta=v2"
+  const session = await loadStripe(
+    "embedded_connect_beta=v2"
+  ).accountSessions.create({
     account: account_id,
     components: {
       payments: {
@@ -32,9 +33,9 @@ export async function createAccountSession(account_id: string) {
           edit_payout_schedule: true,
         },
       },
-      //   payment_method_settings: {
-      //     enabled: true,
-      //   },
+      payment_method_settings: {
+        enabled: true,
+      },
     },
   });
   return { client_secret: session.client_secret };

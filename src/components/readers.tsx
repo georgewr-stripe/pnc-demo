@@ -9,6 +9,7 @@ export interface ReaderInfo {
   description: string;
   tag: string;
   specs: string[];
+  cta_text: string;
 }
 
 const Readers = (props: ReaderInfo) => {
@@ -42,8 +43,8 @@ const Readers = (props: ReaderInfo) => {
         <div className="bg-lloyds-green border-b-2 border-white flex flex-row justify-between p-2 min-w-48 items-middle">
           <span className="text-white text-lloyds-white">{props.tag}</span>
         </div>
-        <a href="/signup" className="flex flex-row justify-between p-2 min-w-48 items-middle bg-lloyds-light-green hover:cursor-pointer">
-          <span className="text-white">Get started</span>
+        <a href="/dashboard/payments" className="flex flex-row justify-between p-2 min-w-48 items-center bg-lloyds-light-green hover:cursor-pointer animate-pulse">
+          <span className="text-white">{props.cta_text}</span>
           <ChevronRight className="text-white size-4" />
         </a>
       </div>

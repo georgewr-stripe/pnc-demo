@@ -1,8 +1,10 @@
 "use server";
 
+import { promises as fs } from "fs";
 import Stripe from "stripe";
 import stripe from "./stripe";
 import { NAMES } from "./random_data";
+import path from "path";
 
 const randomPrice = () => {
   return Math.floor(Math.random() * (50000 - 250 + 1) + 250);
@@ -129,12 +131,37 @@ const createPayouts = async (account_id: string) => {
   );
 };
 
+const setBranding = async (account_id: string) => {
+  const filePath = path.join(process.cwd(), "public/black_horse_feed_logo.png");
+  const fp = await fs.readFile(filePath);
+  const upload = await stripe.files.create(
+    {
+      file: {
+        data: fp,
+        name: "black_horse_feed_logo.jpg",
+        type: "application.octet-stream",
+      },
+      purpose: "business_logo",
+    },
+  );
+  await stripe.accounts.update(account_id, {
+    settings: {
+      branding: {
+        logo: upload.id,
+        primary_color: "#8c53ff",
+        secondary_color: "#122b38",
+      },
+    },
+  });
+};
+
 const createTestData = async (account_id: string) => {
   try {
     const customers = await create_customers(account_id);
     const dataLoaders = [
       createPayments(account_id, customers),
       createPayouts(account_id),
+      setBranding(account_id),
     ];
     await Promise.all(dataLoaders);
   } catch (e) {
