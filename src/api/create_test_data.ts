@@ -1,10 +1,9 @@
 "use server";
 
-import { promises as fs } from "fs";
-import Stripe from "stripe";
 import stripe from "./stripe";
 import { NAMES } from "./random_data";
-import path from "path";
+
+export const maxDuration = 300;
 
 const randomPrice = () => {
   return Math.floor(Math.random() * (50000 - 250 + 1) + 250);
