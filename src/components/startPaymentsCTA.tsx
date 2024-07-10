@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import Image from 'next/image'
 
 const StartPaymentsCTA = () => {
   return (
@@ -10,13 +11,14 @@ const StartPaymentsCTA = () => {
         width={props.width}
         alt={props.title}
       /> */}
+              <Image src="/lloyds_ttp.png" height={200} width={150} alt="Lloyds TTP" />
+
         <div className="flex flex-col p-4 gap-2 md:px-16">
           <span className="text-lloyds-green font-semibold text-xl text-center">
-            Start Accepting Payments Now
+            Start taking payments today
           </span>
           <span className="text-md text-gray-500 text-sm ">
-          We've got lots of ways for your business to take payments in person, whether you're out making deliveries or working in store.
-          </span>
+          Set up an account and start taking payments same day. With pay as you go terms and no upfront fee, take payments simply using an app or payment link.          </span>
         </div>
       </div>
 

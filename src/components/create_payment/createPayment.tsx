@@ -37,14 +37,14 @@ const CreatePayment = () => {
             className="flex flex-row justify-between items-center bg-lloyds-light-green p-2"
             onClick={() => setPaymentType("link")}
           >
-            <span className="text-white mr-2">Payment Link</span>
+            <span className="text-white mr-2 cursor-pointer">Payment Link</span>
             <Link className="text-white size-4" />
           </div>
           <div
             className="flex flex-row justify-between items-center bg-lloyds-light-green p-2"
             onClick={() => setPaymentType("terminal")}
           >
-            <span className="text-white mr-2">Virtual Terminal</span>
+            <span className="text-white mr-2 cursor-pointer">Virtual Terminal</span>
             <CreditCard className="text-white size-4" />
           </div>
         </>

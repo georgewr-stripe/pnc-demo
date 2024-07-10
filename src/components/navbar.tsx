@@ -1,5 +1,6 @@
 "use client";
 
+import { defaultAccountInfo } from "@/app/data";
 import { useAccountData } from "@/hooks/useAccountData";
 import { ChevronDown, Gauge, Home, LockIcon, Mail } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -13,6 +14,7 @@ const NavBar = (props: NavBarProps) => {
   const accountData = useAccountData();
   const router = useRouter();
   const pathname = usePathname();
+  const dashboard = pathname.includes("dashboard");
 
   const className =
     "flex flex-row p-1.5 cursor-pointer bg-lloyds-light-green text-white " +
@@ -30,6 +32,10 @@ const NavBar = (props: NavBarProps) => {
     <></>
   );
 
+  if (dashboard) {
+    return <></>;
+  }
+
   return (
     <div className="flex flex-col w-full bg-white">
       <div className="flex flex-row h-18 w-full border-b-2 border-gray px-6 py-2 justify-between items-center">
@@ -44,14 +50,11 @@ const NavBar = (props: NavBarProps) => {
         </div>
         <div
           className="cursor-pointer"
-          onClick={() =>
-            accountData.setAccountData({
-              account_id: "",
-              business_name: "Your Business Ltd",
-            })
-          }
+          onClick={() => accountData.setAccountData(defaultAccountInfo)}
         >
-          <span className="text-lloyds-dark-green">Reset Stripe Onboarding</span>
+          <span className="text-lloyds-dark-green">
+            Reset Stripe Onboarding
+          </span>
         </div>
       </div>
       <div className="flex flex-row h-18 w-full border-b-2 border-gray px-6 py-2 justify-between items-center">

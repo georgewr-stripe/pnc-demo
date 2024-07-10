@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import NavBar, { NavBarProps } from "@/components/navbar";
 import { AccountDataProvider } from "@/hooks/useAccountData";
 import { lloydsFont } from "./font";
+import { usePathname } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Lloyds Payments Demo",
