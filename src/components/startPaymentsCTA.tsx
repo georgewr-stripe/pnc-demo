@@ -24,7 +24,7 @@ const StartPaymentsCTA = () => {
 
       <div className="flex flex-col bg-slate-100 self-stretch">
         <a
-          href="/signup"
+          href="/marketing"
           className="h-full flex flex-row justify-between p-2 min-w-48 items-center bg-lloyds-light-green hover:cursor-pointer animate-pulse"
         >
           <span className="text-white text-lg">Complete Setup</span>

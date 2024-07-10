@@ -132,18 +132,20 @@ const createPayouts = async (account_id: string) => {
 };
 
 const setBranding = async (account_id: string) => {
-  const filePath = path.join(process.cwd(), "public/black_horse_feed_logo.png");
-  const fp = await fs.readFile(filePath);
-  const upload = await stripe.files.create(
-    {
-      file: {
-        data: fp,
-        name: "black_horse_feed_logo.jpg",
-        type: "application.octet-stream",
-      },
-      purpose: "business_logo",
-    },
+  // const filePath = path.join(process.cwd(), "public/black_horse_feed_logo.png");
+  // const fp = await fs.readFile(filePath);
+  const req = await fetch(
+    "https://lloyds-demo.vercel.app/black_horse_feed_logo.png"
   );
+  const fp = Buffer.from(await req.arrayBuffer());
+  const upload = await stripe.files.create({
+    file: {
+      data: fp,
+      name: "black_horse_feed_logo.jpg",
+      type: "application.octet-stream",
+    },
+    purpose: "business_logo",
+  });
   await stripe.accounts.update(account_id, {
     settings: {
       branding: {
