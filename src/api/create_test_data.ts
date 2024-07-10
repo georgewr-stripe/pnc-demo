@@ -3,8 +3,6 @@
 import stripe from "./stripe";
 import { NAMES } from "./random_data";
 
-export const maxDuration = 300;
-
 const randomPrice = () => {
   return Math.floor(Math.random() * (50000 - 250 + 1) + 250);
 };
