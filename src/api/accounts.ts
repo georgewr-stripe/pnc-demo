@@ -11,12 +11,16 @@ export async function createAccount(props: CreateAccountProps) {
       transfers: { requested: true },
     },
     controller: {
-      application: {
-        loss_liable: false,
-        onboarding_owner: false,
-        pricing_controls: true,
-      },
-      dashboard: { type: "none" },
+      losses: {payments: 'application'},
+      fees: {payer: 'application'},
+      requirement_collection: 'application',
+      stripe_dashboard: {type: 'none'}
+      // application: {
+      //   loss_liable: false,
+      //   onboarding_owner: false,
+      //   pricing_controls: true,
+      // },
+      // dashboard: { type: "none" },
     },
     country: "GB",
   });

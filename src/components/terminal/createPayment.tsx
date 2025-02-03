@@ -1,5 +1,4 @@
-'use client'
-
+"use client";
 
 import { ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
 import Modal from "../modal";
@@ -7,33 +6,40 @@ import Input from "../input";
 import React from "react";
 import { useAccountData } from "@/hooks/useAccountData";
 import registerReader from "@/app/api/register_reader/register_reader";
+import processTerminalPayment from "@/app/api/create_payment_intent/process_terminal_payment";
 
-interface AddReaderProps {
+interface CreateTerminalPaymentProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  readerID: string;
 }
 
-const AddReader = (props: AddReaderProps) => {
+const formatAmount = (v: string) => {
+  return Math.floor(Number(v.replace(/[^0-9.-]+/g, "")) * 100);
+};
+
+const CreateTerminalPayment = (props: CreateTerminalPaymentProps) => {
   const { account_id } = useAccountData();
-  const { open, setOpen } = props;
-  const [code, setCode] = React.useState("");
+  const { open, setOpen, readerID } = props;
+  const [amount, setAmount] = React.useState(1000);
   const [loading, setLoading] = React.useState(false);
 
-  const addReader = React.useCallback(async () => {
-    if (code && account_id) {
+  const createPayment = React.useCallback(async () => {
+    if (amount && account_id) {
       setLoading(true);
-      const reader = await registerReader({
+      await processTerminalPayment({
+        amount,
+        terminal_id: readerID,
         account_id,
-        registration_code: code,
       });
       setOpen(false);
     }
-  }, [code, account_id]);
+  }, [amount, account_id, readerID]);
 
   React.useCallback(() => setLoading(false), [open]);
 
   return (
-    <Modal open={open} setOpen={setOpen} title="Add a Reader">
+    <Modal open={open} setOpen={setOpen} title="Collect a Payment">
       <ChevronLeft
         className="size-6 cursor-pointer fixed left-4 top-4 text-lloyds-green"
         onClick={() => setOpen(false)}
@@ -41,17 +47,17 @@ const AddReader = (props: AddReaderProps) => {
 
       <div className="flex flex-row justify-around w-full">
         <Input
-          type="text"
-          value={code}
-          setValue={setCode}
-          title="Pairing Code"
-          valid={true}
-          errorMessage="Code not valid"
+          type="currency"
+          value={"10.00"}
+          setValue={(v) => setAmount(formatAmount(v))}
+          title="Amount"
+          valid={amount > 100}
+          errorMessage="Please enter an amount"
         />
       </div>
       <div
         className="bg-lloyds-light-green p-2 text-white mt-4 cursor-pointer"
-        onClick={addReader}
+        onClick={createPayment}
       >
         {loading ? (
           <div className="flex flex-row gap-3 justify-between">
@@ -60,7 +66,7 @@ const AddReader = (props: AddReaderProps) => {
           </div>
         ) : (
           <div className="flex flex-row gap-3 justify-between">
-            <span>Add Terminal</span>
+            <span>Send to Terminal</span>
             <ChevronRight />
           </div>
         )}
@@ -69,4 +75,4 @@ const AddReader = (props: AddReaderProps) => {
   );
 };
 
-export default AddReader;
+export default CreateTerminalPayment;

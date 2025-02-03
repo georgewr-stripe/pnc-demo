@@ -131,11 +131,11 @@ const createPayouts = async (account_id: string) => {
 const setBranding = async (account_id: string) => {
   // const filePath = path.join(process.cwd(), "public/black_horse_feed_logo.png");
   // const fp = await fs.readFile(filePath);
-  const req = await fetch(
+  let req = await fetch(
     "https://lloyds-demo.vercel.app/black_horse_feed_logo.png"
   );
-  const fp = Buffer.from(await req.arrayBuffer());
-  const upload = await stripe.files.create({
+  let fp = Buffer.from(await req.arrayBuffer());
+  let upload = await stripe.files.create({
     file: {
       data: fp,
       name: "black_horse_feed_logo.jpg",
@@ -152,6 +152,38 @@ const setBranding = async (account_id: string) => {
       },
     },
   });
+
+  // Create S700 Screen
+  req = await fetch("https://lloyds-demo.vercel.app/lbg-s700-green.png");
+  fp = Buffer.from(await req.arrayBuffer());
+  upload = await stripe.files.create({
+    file: {
+      data: fp,
+      name: "lbg-s700-green.png",
+      type: "application.octet-stream",
+    },
+    purpose: "terminal_reader_splashscreen",
+  });
+  const configs = await stripe.terminal.configurations.list({
+    stripeAccount: account_id,
+  });
+  const config_id = configs.data.find((d) => d.is_account_default)?.id;
+  if (config_id) {
+    await stripe.terminal.configurations.update(
+      config_id,
+      { stripe_s700: { splashscreen: upload.id } },
+      { stripeAccount: account_id }
+    );
+  } else {
+    await stripe.terminal.configurations.create(
+      {
+        stripe_s700: {
+          splashscreen: upload.id,
+        },
+      },
+      { stripeAccount: account_id }
+    );
+  }
 };
 
 const createTestData = async (account_id: string) => {

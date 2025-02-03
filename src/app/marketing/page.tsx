@@ -17,7 +17,7 @@ const CTAS = [
   },
   {
     title: "See our solutions and how they work",
-    text: "You can take payments and manage transactions via our Lloyds Cardnet app on your phone. Select and order a card reader that suits your business needs.",
+    text: "You can take payments and manage transactions via our Lloyds Payments app on your phone. Select and order a card reader that suits your business needs.",
     glow: false,
   },
   {
@@ -50,13 +50,13 @@ const Marketing = () => {
       <div className="flex flex-col mx-auto max-w-4xl">
         <div>
           <span className="text-3xl text-lloyds-dark-green w-full">
-            Get payment-ready with Cardnet - exclusive offer
+            Get payment-ready - exclusive offer
           </span>
         </div>
         <div className="flex flex-row gap-4 items-center">
           <div className="w-[50%]">
             <p>
-              Set up an account with Lloyds Cardnet today - it takes only 5 mins
+              Set up an account with Lloyds Payments today - it takes only 5 mins
               and you can start taking payments right away. No hardware needed.
             </p>
             <p className="mt-2">

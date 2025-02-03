@@ -34,9 +34,8 @@ const SideBar = (props: SideBarProps) => {
           const isSelected = i == selected;
           const style = isSelected ? "bg-lloyds-dark-green" : "";
           return (
-            <div>
+            <div key={i}>
               <div
-                key={i}
                 onClick={() => {
                   setSelected(i);
                   router.push(item.pathname);
