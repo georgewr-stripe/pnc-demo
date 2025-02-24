@@ -18,21 +18,15 @@ export async function createAccountSession(account_id: string) {
       },
       account_onboarding: {
         enabled: true,
-        features: {
-          external_account_collection: false,
-        },
+       
       },
       account_management: {
         enabled: true,
-        features: {
-          external_account_collection: false,
-        },
+        
       },
       notification_banner: {
         enabled: true,
-        features: {
-          external_account_collection: false,
-        },
+        
       },
       payouts: {
         enabled: true,
@@ -40,7 +34,6 @@ export async function createAccountSession(account_id: string) {
           instant_payouts: true,
           standard_payouts: true,
           edit_payout_schedule: true,
-          external_account_collection: false,
         },
       },
       payment_method_settings: {
