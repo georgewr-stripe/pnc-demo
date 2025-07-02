@@ -19,7 +19,7 @@ export interface MaskOptions {
 }
 
 const defaultMaskOptions: MaskOptions["maskOptions"] = {
-  prefix: "£",
+  prefix: "$",
   suffix: "",
   includeThousandsSeparator: true,
   thousandsSeparatorSymbol: ",",

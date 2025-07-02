@@ -21,28 +21,28 @@ const VirtualTerminal = () => {
   const options: StripeElementsOptions = {
     mode: "payment",
     amount: 1099,
-    currency: "gbp",
+    currency: "usd",
     payment_method_types: ["card"],
     paymentMethodCreation: "manual",
     appearance: {
         variables: {
-            fontFamily: 'lloyds',
-            colorPrimary: '#016a4d',
+            fontFamily: 'Nunito Sans, sans-serif',
+            colorPrimary: '#004990',
             borderRadius: '0px'
         }
     },
     fonts: [
         {
-          family: "lloyds",
-          src: "url(https://lloyds-demo.vercel.app/fonts/lloyds_bank_jack-regularWEB.ttf)",
-          weight: "500",
+          family: "Nunito Sans",
+          src: "url(https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap)",
+          weight: "400",
         },
       ],
   };
 
   if (intent) {
     return (
-      <div className="flex flex-col text-lloyds-green items-center gap-4">
+      <div className="flex flex-col text-pnc-blue items-center gap-4">
         <CircleCheckBig className="size-8"/>
         <span className="text-lg">Payment Successful</span>
       </div>

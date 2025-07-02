@@ -34,14 +34,14 @@ const CreatePayment = () => {
       return (
         <>
           <div
-            className="flex flex-row justify-between items-center bg-lloyds-light-green p-2"
+            className="flex flex-row justify-between items-center bg-pnc-orange p-2"
             onClick={() => setPaymentType("link")}
           >
             <span className="text-white mr-2 cursor-pointer">Payment Link</span>
             <Link className="text-white size-4" />
           </div>
           <div
-            className="flex flex-row justify-between items-center bg-lloyds-light-green p-2"
+            className="flex flex-row justify-between items-center bg-pnc-orange p-2"
             onClick={() => setPaymentType("terminal")}
           >
             <span className="text-white mr-2 cursor-pointer">Virtual Terminal</span>
@@ -56,7 +56,7 @@ const CreatePayment = () => {
     <>
       <div className="flex flex-row-reverse w-full">
         <div
-          className="flex flex-row justify-between items-center bg-lloyds-light-green p-2 cursor-pointer"
+          className="flex flex-row justify-between items-center bg-pnc-orange p-2 cursor-pointer"
           onClick={() => setOpen(true)}
         >
           <span className="text-white mr-2">{title}</span>
@@ -66,7 +66,7 @@ const CreatePayment = () => {
       <Modal open={open} setOpen={setOpen} title={title}>
         {paymentType ? (
           <ChevronLeft
-            className="size-6 cursor-pointer fixed left-4 top-4 text-lloyds-green"
+            className="size-6 cursor-pointer fixed left-4 top-4 text-pnc-blue"
             onClick={() => setPaymentType(undefined)}
           />
         ) : (

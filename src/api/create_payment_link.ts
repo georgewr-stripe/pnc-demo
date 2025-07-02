@@ -9,7 +9,7 @@ const createPaymentLink = async (
 ) => {
   const price = await stripe.prices.create(
     {
-      currency: "gbp",
+      currency: "usd",
       product_data: {
         name: params.description,
       },
@@ -20,7 +20,7 @@ const createPaymentLink = async (
   const link = await stripe.paymentLinks.create(
     {
       line_items: [{ price: price.id, quantity: params.quantity }],
-      currency: "gbp",
+      currency: "usd",
     },
     {
       stripeAccount: account_id,

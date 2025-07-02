@@ -52,7 +52,7 @@ const PaymentLink = () => {
   return (
     <div className="py-4">
       {link ? (
-        <div className="bg-lloyds-light-green cursor-pointer p-3">
+        <div className="bg-pnc-orange cursor-pointer p-3">
           <a
             className="text-white flex flex-row justify-between w-full gap-3 items-center"
             href={link.url}
@@ -71,18 +71,17 @@ const PaymentLink = () => {
               setData((p) => ({ ...p, amount: formatAmount(amount) }))
             }
             valid={valid.amount}
-            errorMessage="Enter an amount > £1"
+            errorMessage="Enter an amount > $1"
             type={"currency"}
           />
 
           <Input
-            title="Description"
-            value={data.description}
-            type="text"
-            setValue={(description) => setData((p) => ({ ...p, description }))}
-            valid={valid.description}
-            errorMessage="Please add a description"
-          />
+              title="Description"
+              value={data.description}
+              type="text"
+              setValue={(description) => setData((p) => ({ ...p, description }))}
+              valid={valid.description}
+              errorMessage="Please add a description" placeholder={""}          />
 
           <Input
             title="Quantity"
@@ -95,7 +94,7 @@ const PaymentLink = () => {
             type={"number"}
           />
           <div
-            className="bg-lloyds-light-green p-2 text-white mt-4 cursor-pointer"
+            className="bg-pnc-orange p-2 text-white mt-4 cursor-pointer"
             onClick={handleSubmit}
           >
             {loading ? (

@@ -11,7 +11,7 @@ const createMOTOPayment = async (
   const pi = await stripe.paymentIntents.create(
     {
       amount: params.amount,
-      currency: "gbp",
+      currency: "usd",
       payment_method_types: ["card"],
     //   payment_method_options: {
     //     card: {

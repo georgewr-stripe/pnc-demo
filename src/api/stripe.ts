@@ -9,7 +9,7 @@ if (!SECRET_KEY) {
 export const loadStripe = (beta: string = "unified_accounts_beta=v1") => {
   return new Stripe(SECRET_KEY, {
     // @ts-ignore
-    apiVersion: `2024-04-10; ${beta};`,
+    apiVersion: `2024-04-10; `,
   });
 };
 

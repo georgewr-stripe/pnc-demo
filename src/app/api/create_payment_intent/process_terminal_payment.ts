@@ -8,7 +8,7 @@ const processTerminalPayment = async (props: ProcessTerminalPaymentProps) => {
   const intent = await stripe.paymentIntents.create(
     {
       amount,
-      currency: "gbp",
+      currency: "usd",
       payment_method_types: ["card_present"],
     },
     {

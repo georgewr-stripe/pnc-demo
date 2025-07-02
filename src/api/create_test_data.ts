@@ -12,9 +12,9 @@ const randomSelection = <T extends any>(list: T[]): T => {
 };
 
 const cardTokens = [
-  "pm_card_gb",
-  "pm_card_gb_debit",
-  "pm_card_gb_mastercard",
+  "pm_card_visa",
+  "pm_card_visa_debit",
+  "pm_card_mastercard",
   "pm_card_amex",
 ];
 
@@ -29,7 +29,7 @@ const create_customers = async (account_id: string) => {
     stripe.customers.create(
       {
         name: `${name.firstName} ${name.lastName}`,
-        email: `${name.firstName.toLocaleLowerCase()}@${name.lastName.toLocaleLowerCase()}.co.uk`,
+        email: `${name.firstName.toLocaleLowerCase()}@${name.lastName.toLocaleLowerCase()}.com`,
       },
       { stripeAccount: account_id }
     )
@@ -52,7 +52,7 @@ const _createPayment = (
         enabled: true,
         allow_redirects: "never",
       },
-      currency: "gbp",
+      currency: "usd",
       customer: randomSelection(customers),
       confirm: true,
     },
@@ -85,7 +85,7 @@ const createPayments = async (account_id: string, customers: string[]) => {
 
 const getBalance = async (account_id: string) => {
   const balance = await stripe.balance.retrieve({ stripeAccount: account_id });
-  return balance.available.find((b) => b.currency == "gbp")?.amount || 0;
+  return balance.available.find((b) => b.currency == "usd")?.amount || 0;
 };
 
 const sleep = (time: number) => {
@@ -120,7 +120,7 @@ const createPayouts = async (account_id: string) => {
       stripe.payouts.create(
         {
           amount: amount,
-          currency: "gbp",
+          currency: "usd",
         },
         { stripeAccount: account_id }
       )
@@ -147,8 +147,8 @@ const setBranding = async (account_id: string) => {
     settings: {
       branding: {
         logo: upload.id,
-        primary_color: "#8c53ff",
-        secondary_color: "#122b38",
+        primary_color: "#004990",
+        secondary_color: "#0077B5",
       },
     },
   });

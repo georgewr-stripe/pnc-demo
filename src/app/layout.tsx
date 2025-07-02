@@ -4,12 +4,11 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import NavBar, { NavBarProps } from "@/components/navbar";
 import { AccountDataProvider } from "@/hooks/useAccountData";
-import { lloydsFont } from "./font";
 import { usePathname } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Lloyds Payments Demo",
-  description: "Stripe Payments Demo for Lloyds",
+  title: "PNC Payments Demo",
+  description: "Stripe Payments Demo for PNC",
 };
 
 export default function RootLayout({
@@ -23,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-slate-100">
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <body className={lloydsFont.className}>
+      <body>
         <AccountDataProvider>
           <div className="sticky top-0 z-50">
             <Header />

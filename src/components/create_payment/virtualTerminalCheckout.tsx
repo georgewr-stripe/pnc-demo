@@ -69,23 +69,24 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
     <div className="flex flex-col">
       <Input
         title={"Amount"}
-        value="£10.00"
+        value="$10.00"
         setValue={(amount) =>
           setData((prev) => ({ ...prev, amount: formatAmount(amount) }))
         }
         valid={data.amount > 100}
-        errorMessage={"Please enter an amount > £1"}
+        errorMessage={"Please enter an amount > $1"}
         type={"currency"}
+        placeholder={"Enter amount"}
       />
       <PaymentElement className="pt-2" />
       {loading ? (
-        <div className="flex flex-row gap-3 justify-between bg-lloyds-light-green text-white p-3 mt-2">
+        <div className="flex flex-row gap-3 justify-between bg-pnc-light-blue text-white p-3 mt-2">
           <span>Loading...</span>
           <RefreshCw className="animate-spin" />
         </div>
       ) : (
         <div
-          className="flex flex-row gap-3 justify-between bg-lloyds-light-green text-white p-3 mt-2"
+          className="flex flex-row gap-3 justify-between bg-pnc-light-blue text-white p-3 mt-2"
           onClick={handleSubmit}
         >
           <span className="cursor-pointer">Submit</span>

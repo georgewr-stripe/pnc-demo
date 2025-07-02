@@ -22,17 +22,17 @@ const SideBar = (props: SideBarProps) => {
   }, [pathname]);
 
   return (
-    <div className="bg-lloyds-green h-full flex flex-col">
+    <div className="bg-pnc-orange h-full flex flex-col">
       <div className="flex flex-col gap-1 mt-24">
         <span className="text-lg text-white text-center">
           Merchant Services
         </span>
         <span className="text-lg text-white text-center pb-4">Payments</span>
       </div>
-      <div className="border-t-2 border-lloyds-dark-green">
+      <div className="border-t-2 bg-pnc-orange">
         {props.items.map((item, i) => {
           const isSelected = i == selected;
-          const style = isSelected ? "bg-lloyds-dark-green" : "";
+          const style = isSelected ? "bg-pnc-orange" : "";
           return (
             <div key={i}>
               <div

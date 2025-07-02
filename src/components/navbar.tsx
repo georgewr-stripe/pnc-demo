@@ -17,7 +17,7 @@ const NavBar = (props: NavBarProps) => {
   const dashboard = pathname.includes("dashboard");
 
   const className =
-    "flex flex-row p-1.5 cursor-pointer bg-lloyds-light-green text-white " +
+    "flex flex-row p-1.5 cursor-pointer bg-pnc-light-blue text-white " +
     (pathname.startsWith("/dashboard") ? "" : " animate-pulse");
 
   const dashboardButton = accountData.loggedIn ? (
@@ -52,7 +52,7 @@ const NavBar = (props: NavBarProps) => {
           className="cursor-pointer"
           onClick={() => accountData.setAccountData(defaultAccountInfo)}
         >
-          <span className="text-lloyds-dark-green">
+          <span className="text-pnc-dark-blue">
             Reset Stripe Onboarding
           </span>
         </div>
@@ -64,20 +64,20 @@ const NavBar = (props: NavBarProps) => {
         </div>
 
         <div className="flex flex-row gap-6">
-          <Home className="text-lloyds-dark-green" />
+          <Home className="text-pnc-dark-blue" />
           <div className="flex flex-row">
-            <span className="text-lloyds-dark-green">Your Accounts</span>
-            <ChevronDown className="text-lloyds-dark-green" />
+            <span className="text-pnc-dark-blue">Your Accounts</span>
+            <ChevronDown className="text-pnc-dark-blue" />
           </div>
           <div className="flex flex-row">
-            <span className="text-lloyds-dark-green">Admin</span>
-            <ChevronDown className="text-lloyds-dark-green" />
+            <span className="text-pnc-dark-blue">Admin</span>
+            <ChevronDown className="text-pnc-dark-blue" />
           </div>
           <div className="flex flex-row">
-            <span className="text-lloyds-dark-green">Help & Support</span>
-            <ChevronDown className="text-lloyds-dark-green" />
+            <span className="text-pnc-dark-blue">Help & Support</span>
+            <ChevronDown className="text-pnc-dark-blue" />
           </div>
-          <Mail className="text-lloyds-dark-green" />
+          <Mail className="text-pnc-dark-blue" />
         </div>
       </div>
     </div>

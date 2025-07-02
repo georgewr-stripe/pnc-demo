@@ -12,10 +12,10 @@ const Header = () => {
   const dashboard = pathname.includes("dashboard");
 
   return (
-    <div className="w-full h-16 flex flex-row bg-lloyds-green justify-between px-6">
+    <div className="w-full h-16 flex flex-row bg-pnc-blue justify-between px-6">
       <div className="flex flex-row">
         <a className="flex flex-row justify-center" href="/">
-          <Image src={"/logo.svg"} height={200} width={150} alt="lloyds logo" />
+          <Image src={"/logo.png"} height={200} width={150} alt="pnc logo" />
         </a>
         {dashboard ? (
           <div className="flex items-center pl-6">

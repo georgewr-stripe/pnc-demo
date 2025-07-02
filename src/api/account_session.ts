@@ -36,9 +36,9 @@ export async function createAccountSession(account_id: string) {
           edit_payout_schedule: true,
         },
       },
-      payment_method_settings: {
-        enabled: true,
-      },
+      // payment_method_settings: {
+      //   enabled: true,
+      // },
     },
   });
   return { client_secret: session.client_secret };

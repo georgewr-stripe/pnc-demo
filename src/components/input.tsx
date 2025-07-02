@@ -1,22 +1,23 @@
+"use client";
+
 import { CircleAlert } from "lucide-react";
-import { HTMLInputTypeAttribute, useId } from "react";
+import React, { useId } from "react";
 import CurrencyInput from "./currencyInput";
-import React from "react";
 
 export interface InputProps {
   title: string;
+  type: "text" | "currency";
+  placeholder: string;
   value?: string;
-  setValue: (v: string) => void;
+  setValue: (value: string) => void;
   valid: boolean;
   errorMessage: string;
-  placeholder?: string;
-  type: HTMLInputTypeAttribute | "currency";
 }
 
 const Input = (props: InputProps) => {
   const id = useId();
   const inputColours = props.valid
-    ? "ring-lloyds-green focus:ring-lloyds-green"
+    ? "ring-pnc-blue focus:ring-pnc-blue"
     : "text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500";
 
   const inputParams = {
@@ -42,7 +43,7 @@ const Input = (props: InputProps) => {
 
   return (
     <div>
-      <label htmlFor={id} className="block text-sm leading-6 text-lloyds-green">
+      <label htmlFor={id} className="block text-sm leading-6 text-pnc-blue">
         {props.title}
       </label>
       <div className="relative mt-2 rounded-md shadow-sm">

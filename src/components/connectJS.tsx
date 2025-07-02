@@ -1,7 +1,6 @@
 "use client";
 
 import { createAccountSession } from "@/api/account_session";
-import { lloydsFont } from "@/app/font";
 import { useAccountData } from "@/hooks/useAccountData";
 import {
   StripeConnectInstance,
@@ -27,24 +26,23 @@ const ConnectJS = (props: PropsWithChildren) => {
   }, [account_id]);
 
   const cerateStripeConnectInstance = React.useCallback(() => {
-    console.log(lloydsFont);
     return loadConnectAndInitialize({
       publishableKey: PUBLIC_KEY,
       fetchClientSecret,
       appearance: {
         variables: {
-          colorPrimary: "#016A4D",
-          buttonPrimaryColorBackground: "#77BA00",
+          colorPrimary: "#004990",
+          buttonPrimaryColorBackground: "#0077B5",
           buttonPrimaryColorText: "#FFFFFF",
           borderRadius: "0px",
-          fontFamily: "lloyds",
+          fontFamily: "Nunito Sans, sans-serif",
         },
       },
       fonts: [
         {
-          family: "lloyds",
-          src: "url(https://lloyds-demo.vercel.app/fonts/lloyds_bank_jack-regularWEB.ttf)",
-          weight: "500",
+          family: "Nunito Sans",
+          src: "url(https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap)",
+          weight: "400",
         },
       ],
     });

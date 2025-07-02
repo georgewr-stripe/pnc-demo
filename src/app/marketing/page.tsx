@@ -17,7 +17,7 @@ const CTAS = [
   },
   {
     title: "See our solutions and how they work",
-    text: "You can take payments and manage transactions via our Lloyds Payments app on your phone. Select and order a card reader that suits your business needs.",
+    text: "You can take payments and manage transactions via our PNC Payments app on your phone. Select and order a card reader that suits your business needs.",
     glow: false,
   },
   {
@@ -49,14 +49,14 @@ const Marketing = () => {
     <div className="px-6 lg:px-8">
       <div className="flex flex-col mx-auto max-w-4xl">
         <div>
-          <span className="text-3xl text-lloyds-dark-green w-full">
+          <span className="text-3xl text-pnc-dark-blue w-full">
             Get payment-ready - exclusive offer
           </span>
         </div>
         <div className="flex flex-row gap-4 items-center">
           <div className="w-[50%]">
             <p>
-              Set up an account with Lloyds Payments today - it takes only 5 mins
+              Set up an account with PNC Payments today - it takes only 5 mins
               and you can start taking payments right away. No hardware needed.
             </p>
             <p className="mt-2">
@@ -86,7 +86,7 @@ const Marketing = () => {
             const style =
               "rounded-xl border-[3px] flex flex-col p-2 justify-between gap-2 " +
               (cta.glow
-                ? "border-lloyds-dark-green bg-lloyds-green text-white cursor-pointer"
+                ? "border-pnc-dark-blue bg-pnc-blue text-white cursor-pointer"
                 : "border-gray-500");
             return (
               <div
@@ -109,10 +109,10 @@ const Marketing = () => {
         </div>
         <div className="border-t-2 border-gray-600 w-full flex flex-row-reverse">
           <div className="flex flex-row mt-2 gap-2">
-            <div className="border-2 p-2 border-lloyds-green text-lloyds-green">
+            <div className="border-2 p-2 border-pnc-blue text-pnc-blue">
               <span>Cancel</span>
             </div>
-            <div className="border-2 p-2 border-lloyds-green bg-lloyds-green text-white flex flex-row items-center cursor-pointer">
+            <div className="border-2 p-2 border-pnc-blue bg-pnc-blue text-white flex flex-row items-center cursor-pointer">
               <span>Confirm</span>
               {loading ? (
                 <RefreshCw className=" animate-spin ml-2" />

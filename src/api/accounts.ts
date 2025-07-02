@@ -16,7 +16,7 @@ export async function createAccount(props: CreateAccountProps) {
       requirement_collection: 'stripe',
       stripe_dashboard: {type: 'none'}
     },
-    country: "GB",
+    country: "US",
   });
 
   const person = await stripe.accounts.createPerson(account.id, props.person);
