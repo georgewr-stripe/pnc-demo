@@ -86,7 +86,7 @@ const Marketing = () => {
             const style =
               "rounded-xl border-[3px] flex flex-col p-2 justify-between gap-2 " +
               (cta.glow
-                ? "border-pnc-dark-blue bg-pnc-blue text-white cursor-pointer"
+                ? "border-pnc-dark-gray bg-pnc-orange text-white cursor-pointer"
                 : "border-gray-500");
             return (
               <div

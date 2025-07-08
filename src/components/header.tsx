@@ -12,7 +12,7 @@ const Header = () => {
   const dashboard = pathname.includes("dashboard");
 
   return (
-    <div className="w-full h-16 flex flex-row bg-pnc-blue justify-between px-6">
+    <div className="w-full h-16 flex flex-row bg-pnc-light-gray justify-between px-6">
       <div className="flex flex-row">
         <a className="flex flex-row justify-center" href="/">
           <Image src={"/logo.png"} height={200} width={150} alt="pnc logo" />

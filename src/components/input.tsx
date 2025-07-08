@@ -6,8 +6,8 @@ import CurrencyInput from "./currencyInput";
 
 export interface InputProps {
   title: string;
-  type: "text" | "currency";
-  placeholder: string;
+  type: "text" | "currency" | "number";
+  placeholder?: string;
   value?: string;
   setValue: (value: string) => void;
   valid: boolean;

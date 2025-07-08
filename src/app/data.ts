@@ -4,15 +4,15 @@ import { ReaderInfo } from "@/components/readers";
 
 export const defaultAccountInfo = {
   account_id: "",
-  business_name: "PNC Merchant Services",
+  business_name: "Pittsburg Dental",
 };
 
 export const accountInfo: AccountInfoProps[] = [
   {
-    name: "Business Account",
+    name: "Business Checking Account",
     balance: 25117.27,
     available: 3517.27,
-    account_number: "000123456789",
+    account_number: "000123456788",
     routing_number: "043000096",
   },
   {
@@ -52,7 +52,7 @@ export const readerInfo: ReaderInfo[] = [
   },
   {
     title: "Tap to Pay",
-    image: "/lloyds_ttp.png",
+    image: "/pnc_ttp.png",
     height: 200,
     width: 200,
     description:
@@ -88,6 +88,7 @@ const person: CreateAccountProps["person"] = {
   address: {
     line1: "address_full_match",
     city: "Pittsburgh",
+    state: "PA",
     country: "US",
     postal_code: "15222",
   },
@@ -98,6 +99,7 @@ const person: CreateAccountProps["person"] = {
   },
   email: "olivia@pnc.com",
   phone: "+1-800-762-2265",
+  id_number: "000000000",
   relationship: {
     director: true,
     executive: true,
@@ -122,6 +124,7 @@ export const onboardingTypes: { name: string; kyc: CreateAccountProps }[] = [
           address: {
             line1: "address_full_match",
             city: "Pittsburgh",
+            state: "PA",
             country: "US",
             postal_code: "15222",
           },
@@ -160,6 +163,7 @@ export const onboardingTypes: { name: string; kyc: CreateAccountProps }[] = [
           address: {
             line1: "address_full_match",
             city: "Pittsburgh",
+            state: "PA",
             country: "US",
             postal_code: "15222",
           },

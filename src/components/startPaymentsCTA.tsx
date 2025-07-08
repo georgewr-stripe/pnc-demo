@@ -11,7 +11,7 @@ const StartPaymentsCTA = () => {
         width={props.width}
         alt={props.title}
       /> */}
-              <Image src="/lloyds_ttp.png" height={200} width={150} alt="PNC TTP" />
+              <Image src="/pnc_ttp.png" height={200} width={150} alt="PNC TTP" />
 
         <div className="flex flex-col p-4 gap-2 md:px-16">
           <span className="text-pnc-blue font-semibold text-xl text-center">

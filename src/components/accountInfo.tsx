@@ -24,7 +24,7 @@ const AccountInfo = (props: AccountInfoProps) => {
             {props.name.toUpperCase()}
           </span>
           <span className="text-sm text-gray-500">Routing: {props.routing_number}</span>
-          <span className="text-sm text-gray-500">Accounting: {props.account_number}</span>
+          <span className="text-sm text-gray-500">Account: {props.account_number}</span>
         </div>
         <div className="flex flex-row px-2 items-center">
           <span className="text-xl font-extralight text-black">

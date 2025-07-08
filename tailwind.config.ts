@@ -18,6 +18,8 @@ const config: Config = {
         "pnc-light-blue": "#0077B5",
         "pnc-orange": "#FF6600",
         "pnc-dark-blue": "#002D62",
+        "pnc-light-gray": "#414e58",
+        "pnc-dark-gray": "#2d3943",
       },
       fontFamily: {
         sans: ["Nunito Sans", "sans-serif"],

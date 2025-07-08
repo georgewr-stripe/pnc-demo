@@ -129,16 +129,15 @@ const createPayouts = async (account_id: string) => {
 };
 
 const setBranding = async (account_id: string) => {
-  // const filePath = path.join(process.cwd(), "public/black_horse_feed_logo.png");
-  // const fp = await fs.readFile(filePath);
+ 
   let req = await fetch(
-    "https://lloyds-demo.vercel.app/black_horse_feed_logo.png"
+    "https://lloyds-demo.vercel.app/tooth_logo.png"
   );
   let fp = Buffer.from(await req.arrayBuffer());
   let upload = await stripe.files.create({
     file: {
       data: fp,
-      name: "black_horse_feed_logo.jpg",
+      name: "tooth_logo.jpg",
       type: "application.octet-stream",
     },
     purpose: "business_logo",
@@ -154,12 +153,12 @@ const setBranding = async (account_id: string) => {
   });
 
   // Create S700 Screen
-  req = await fetch("https://lloyds-demo.vercel.app/lbg-s700-green.png");
+  req = await fetch("https://lloyds-demo.vercel.app/pnc-s700-splash.png");
   fp = Buffer.from(await req.arrayBuffer());
   upload = await stripe.files.create({
     file: {
       data: fp,
-      name: "lbg-s700-green.png",
+      name: "pnc-s700-splash.png",
       type: "application.octet-stream",
     },
     purpose: "terminal_reader_splashscreen",
