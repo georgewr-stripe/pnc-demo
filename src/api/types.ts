@@ -19,3 +19,17 @@ export interface PaymentLinkParams {
 export interface MOTOPaymentParams {
   amount: number;
 }
+
+
+export interface BrandingFile {
+  name: string;
+  type: string;
+  src: string;
+}
+
+export interface AccountBranding {
+  icon?: BrandingFile;
+  logo?: BrandingFile;
+  primary_color: string;
+  secondary_color: string;
+}

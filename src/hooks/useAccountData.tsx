@@ -24,7 +24,7 @@ const AccountDataContext = React.createContext<AccountDataContextType>({
 
 function AccountDataProvider(props: PropsWithChildren) {
   const [state, setState, loaded] = useLocalStorage<AccountData>(
-    "lloyds-demo-account-data",
+    "pnc-demo-account-data",
     { business_name: defaultAccountInfo.business_name }
   );
   const [loggedIn, setLoggedIn] = React.useState(false);

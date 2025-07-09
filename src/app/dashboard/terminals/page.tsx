@@ -11,7 +11,7 @@ const Terminals = () => {
     <div>
       <div className="flex flex-row-reverse w-full">
         <div
-          className="flex flex-row justify-between items-center bg-lloyds-light-green p-2 cursor-pointer"
+          className="flex flex-row justify-between items-center p-2 cursor-pointer bg-pnc-orange"
           onClick={() => setOpen(true)}
         >
           <span className="text-white mr-2">Add a Reader</span>

@@ -65,15 +65,12 @@ const PaymentLink = () => {
       ) : (
         <>
           <Input
-            title="Amount"
-            value={"10.00"}
-            setValue={(amount) =>
-              setData((p) => ({ ...p, amount: formatAmount(amount) }))
-            }
-            valid={valid.amount}
-            errorMessage="Enter an amount > $1"
-            type={"currency"}
-          />
+              title="Amount"
+              value={"10.00"}
+              setValue={(amount) => setData((p) => ({ ...p, amount: formatAmount(amount) }))}
+              valid={valid.amount}
+              errorMessage="Enter an amount > $1"
+              type={"currency"} />
 
           <Input
               title="Description"
@@ -81,7 +78,7 @@ const PaymentLink = () => {
               type="text"
               setValue={(description) => setData((p) => ({ ...p, description }))}
               valid={valid.description}
-              errorMessage="Please add a description" placeholder={""}          />
+              errorMessage="Please add a description"     />
 
           <Input
             title="Quantity"

@@ -13,6 +13,7 @@ const sideBarItems: SideBarProps["items"] = [
   { title: "Payouts", pathname: "/dashboard/payouts" },
   { title: "Account Management", pathname: "/dashboard/account" },
   { title: "Payment Settings", pathname: "/dashboard/settings" },
+  { title: "Branding", pathname: "/dashboard/branding" },
   { title: "Terminals", pathname: "/dashboard/terminals" },
 ];
 
