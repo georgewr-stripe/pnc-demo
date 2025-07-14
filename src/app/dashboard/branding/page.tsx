@@ -12,6 +12,7 @@ const Branding = () => {
     const [secondaryColor, setSecondaryColor] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [isUploading, setIsUploading] = useState(false)
+    const [isInitialLoading, setIsInitialLoading] = useState(true)
     const [uploadError, setUploadError] = useState<string>('')
     const [uploadErrors, setUploadErrors] = useState<string[]>([])
     const logoFileRef = useRef<HTMLInputElement>(null)
@@ -19,13 +20,22 @@ const Branding = () => {
 
     useEffect(() => {
         const fetchBranding = async (id: string) => {
-            const branding = await getAccountBranding(id)
-            setBranding(branding)
-            setPrimaryColor(branding.primary_color || '')
-            setSecondaryColor(branding.secondary_color || '')
+            setIsInitialLoading(true)
+            try {
+                const branding = await getAccountBranding(id)
+                setBranding(branding)
+                setPrimaryColor(branding.primary_color || '')
+                setSecondaryColor(branding.secondary_color || '')
+            } catch (error) {
+                console.error('Failed to fetch branding:', error)
+            } finally {
+                setIsInitialLoading(false)
+            }
         }
         if (account_id) {
             fetchBranding(account_id)
+        } else {
+            setIsInitialLoading(false)
         }
     }, [account_id])
 
@@ -90,6 +100,23 @@ const Branding = () => {
         }
     }
 
+    // Loading spinner component
+    const LoadingSpinner = () => (
+        <div className="flex items-center justify-center p-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <span className="ml-3 text-gray-600">Loading branding settings...</span>
+        </div>
+    );
+
+    if (isInitialLoading) {
+        return (
+            <div className="max-w-4xl mx-auto p-6">
+                <h1 className="text-3xl font-bold mb-8">Branding Settings</h1>
+                <LoadingSpinner />
+            </div>
+        );
+    }
+
     return (
         <div className="max-w-4xl mx-auto p-6">
             <h1 className="text-3xl font-bold mb-8">Branding Settings</h1>
@@ -98,6 +125,14 @@ const Branding = () => {
                 {/* Logo Section */}
                 <div className="bg-white rounded-lg shadow-md p-6">
                     <h2 className="text-xl font-semibold mb-4">Logo</h2>
+                    {isUploading && (
+                        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div className="flex items-center">
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                                <span className="text-sm text-blue-700">Uploading logo...</span>
+                            </div>
+                        </div>
+                    )}
                     {branding?.logo?.src ? (
                         <div className="space-y-4">
                             <div className="flex items-center space-x-4">
@@ -147,6 +182,14 @@ const Branding = () => {
                 {/* Icon Section */}
                 <div className="bg-white rounded-lg shadow-md p-6">
                     <h2 className="text-xl font-semibold mb-4">Icon</h2>
+                    {isUploading && (
+                        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div className="flex items-center">
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                                <span className="text-sm text-blue-700">Uploading icon...</span>
+                            </div>
+                        </div>
+                    )}
                     {branding?.icon?.src ? (
                         <div className="space-y-4">
                             <div className="flex items-center space-x-4">
@@ -269,7 +312,14 @@ const Branding = () => {
                             disabled={isLoading}
                             className="w-full mt-6 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {isLoading ? 'Saving...' : 'Save Colors'}
+                            {isLoading ? (
+                                <div className="flex items-center justify-center">
+                                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                    Saving...
+                                </div>
+                            ) : (
+                                'Save Colors'
+                            )}
                         </button>
                     </div>
                 </div>

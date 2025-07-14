@@ -9,7 +9,9 @@ import {
 const Payments = () => {
   return (
     <div>
-      <CreatePayment />
+      <div className="flex flex-row-reverse w-full">
+        <CreatePayment />
+      </div>
       <ConnectNotificationBanner
         collectionOptions={{
           fields: "eventually_due",

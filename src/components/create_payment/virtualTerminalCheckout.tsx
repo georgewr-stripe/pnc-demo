@@ -12,6 +12,7 @@ import createMOTOPayment from "@/api/create_moto_payment";
 import { useAccountData } from "@/hooks/useAccountData";
 import { ChevronRight, RefreshCw } from "lucide-react";
 import Stripe from "stripe";
+import Button from "../button";
 
 interface VTCProps {
   setIntent: React.Dispatch<
@@ -38,7 +39,7 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
       return;
     }
 
-    setLoading(true);
+    
 
     // Trigger form validation and wallet collection
     const { error: submitError } = await elements.submit();
@@ -56,6 +57,7 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
     }
 
     // Create the PaymentIntent and obtain clientSecret
+    setLoading(true);
     const intent = await createMOTOPayment(
       data,
       account_id,
@@ -71,27 +73,21 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
         title={"Amount"}
         value="$10.00"
         setValue={(amount) =>
-          setData((prev) => ({ ...prev, amount: formatAmount(amount) }))
+          setData((prev) => ({
+            ...prev,
+            amount: formatAmount(amount as string),
+          }))
         }
         valid={data.amount > 100}
         errorMessage={"Please enter an amount > $1"}
         type={"currency"}
         placeholder={"Enter amount"}
       />
-      <PaymentElement className="pt-2" />
+      <PaymentElement className="pt-2 pb-2" />
       {loading ? (
-        <div className="flex flex-row gap-3 justify-between bg-pnc-light-blue text-white p-3 mt-2">
-          <span>Loading...</span>
-          <RefreshCw className="animate-spin" />
-        </div>
+        <Button text="Loading..." icon={RefreshCw} disabled={true} color="secondary" />
       ) : (
-        <div
-          className="flex flex-row gap-3 justify-between bg-pnc-light-blue text-white p-3 mt-2"
-          onClick={handleSubmit}
-        >
-          <span className="cursor-pointer">Submit</span>
-          <ChevronRight />
-        </div>
+        <Button text="Submit" icon={ChevronRight} onClick={handleSubmit} color="secondary" />
       )}
     </div>
   );

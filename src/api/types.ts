@@ -10,16 +10,21 @@ export type CreateAccountProps = {
   person: Stripe.AccountCreatePersonParams;
 };
 
-export interface PaymentLinkParams {
-  amount: number;
+export interface PaymentLinkLineItem {
+  price_id?: string;
+  amount?: number;
   description: string;
   quantity: number;
+}
+
+export interface CreatePaymentLinkParams {
+  line_items: PaymentLinkLineItem[];
+  currency?: string;
 }
 
 export interface MOTOPaymentParams {
   amount: number;
 }
-
 
 export interface BrandingFile {
   name: string;

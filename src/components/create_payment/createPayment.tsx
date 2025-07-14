@@ -3,6 +3,7 @@ import Modal from "../modal";
 import { ChevronLeft, CreditCard, Link, Plus } from "lucide-react";
 import PaymentLink from "./paymentLink";
 import VirtualTerminal from "./virtualTerminal";
+import Button from "../button";
 
 const paymentTypes = {
   link: PaymentLink,
@@ -33,20 +34,16 @@ const CreatePayment = () => {
     } else {
       return (
         <>
-          <div
-            className="flex flex-row justify-between items-center bg-pnc-orange p-2"
+          <Button
+            text="Payment Link"
+            icon={Link}
             onClick={() => setPaymentType("link")}
-          >
-            <span className="text-white mr-2 cursor-pointer">Payment Link</span>
-            <Link className="text-white size-4" />
-          </div>
-          <div
-            className="flex flex-row justify-between items-center bg-pnc-orange p-2"
+          />
+          <Button
+            text="Virtual Terminal"
+            icon={CreditCard}
             onClick={() => setPaymentType("terminal")}
-          >
-            <span className="text-white mr-2 cursor-pointer">Virtual Terminal</span>
-            <CreditCard className="text-white size-4" />
-          </div>
+          />
         </>
       );
     }
@@ -54,16 +51,10 @@ const CreatePayment = () => {
 
   return (
     <>
-      <div className="flex flex-row-reverse w-full">
-        <div
-          className="flex flex-row justify-between items-center bg-pnc-orange p-2 cursor-pointer"
-          onClick={() => setOpen(true)}
-        >
-          <span className="text-white mr-2">{title}</span>
-          <Plus className="text-white size-5" />
-        </div>
+      <div className="flex flex-row">
+        <Button text={title} icon={Plus} onClick={() => setOpen(true)} />
       </div>
-      <Modal open={open} setOpen={setOpen} title={title}>
+      <Modal open={open} setOpen={setOpen}>
         {paymentType ? (
           <ChevronLeft
             className="size-6 cursor-pointer fixed left-4 top-4 text-pnc-blue"

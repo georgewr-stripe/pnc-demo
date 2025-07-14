@@ -8,8 +8,8 @@ export interface InputProps {
   title: string;
   type: "text" | "currency" | "number";
   placeholder?: string;
-  value?: string;
-  setValue: (value: string) => void;
+  value?: string | number; // Can be string for text/number, number for currency (cents)
+  setValue: (value: string | number) => void; // Can return string or number (cents for currency)
   valid: boolean;
   errorMessage: string;
 }
@@ -34,12 +34,19 @@ const Input = (props: InputProps) => {
   };
 
   const input = React.useMemo(() => {
-    if (props.type == "currency") {
-      return <CurrencyInput {...inputParams} />;
+    if (props.type === "currency") {
+      return (
+        <CurrencyInput 
+          {...inputParams}
+          value={typeof props.value === 'number' ? props.value : undefined}
+          onChange={(cents: number) => props.setValue(cents)}
+          onBlur={(cents: number) => props.setValue(cents)}
+        />
+      );
     } else {
       return <input {...inputParams} />;
     }
-  }, [props.type]);
+  }, [props.type, props.value, props.setValue]);
 
   return (
     <div>
