@@ -3,10 +3,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-const useLocalStorage = <T extends void>(
+function useLocalStorage<T>(
   key: string,
   initialValue: T
-): [T, React.Dispatch<React.SetStateAction<T>>, boolean] => {
+): [T, React.Dispatch<React.SetStateAction<T>>, boolean] {
   const [state, setState] = useState<T>(initialValue);
   const [loaded, setLoaded] = useState(false);
 
