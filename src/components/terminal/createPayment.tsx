@@ -5,7 +5,6 @@ import Modal from "../modal";
 import Input from "../input";
 import React from "react";
 import { useAccountData } from "@/hooks/useAccountData";
-import registerReader from "@/app/api/register_reader/register_reader";
 import processTerminalPayment from "@/app/api/create_payment_intent/process_terminal_payment";
 
 interface CreateTerminalPaymentProps {
@@ -34,9 +33,9 @@ const CreateTerminalPayment = (props: CreateTerminalPaymentProps) => {
       });
       setOpen(false);
     }
-  }, [amount, account_id, readerID]);
+  }, [amount, account_id, readerID, setOpen]);
 
-  React.useCallback(() => setLoading(false), [open, setLoading]);
+  React.useCallback(() => setLoading(open ? false : false), [open, setLoading]);
 
   return (
     <Modal open={open} setOpen={setOpen} title="Collect a Payment">

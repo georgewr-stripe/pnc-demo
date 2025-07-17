@@ -39,8 +39,6 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
       return;
     }
 
-    
-
     // Trigger form validation and wallet collection
     const { error: submitError } = await elements.submit();
     if (submitError) {
@@ -65,7 +63,7 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
     );
     props.setIntent(intent);
     setLoading(false);
-  }, [data, stripe, elements, account_id, props.setIntent]);
+  }, [data, stripe, elements, account_id, props]);
 
   return (
     <div className="flex flex-col">
@@ -85,9 +83,19 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
       />
       <PaymentElement className="pt-2 pb-2" />
       {loading ? (
-        <Button text="Loading..." icon={RefreshCw} disabled={true} color="secondary" />
+        <Button
+          text="Loading..."
+          icon={RefreshCw}
+          disabled={true}
+          color="secondary"
+        />
       ) : (
-        <Button text="Submit" icon={ChevronRight} onClick={handleSubmit} color="secondary" />
+        <Button
+          text="Submit"
+          icon={ChevronRight}
+          onClick={handleSubmit}
+          color="secondary"
+        />
       )}
     </div>
   );

@@ -2,6 +2,7 @@
 import { getAccountBranding, updateAccountBranding, handleBrandingUpload } from '@/api/account_branding';
 import { AccountBranding } from '@/api/types';
 import { useAccountData } from '@/hooks/useAccountData'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { StripeError } from '@stripe/stripe-js';
 import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
@@ -86,6 +87,7 @@ const Branding = () => {
             // Refresh branding data
             const updatedBranding = await getAccountBranding(account_id)
             setBranding(updatedBranding)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: StripeError | any) {
             console.error('Failed to upload image:', error)
             setUploadError(error.message || 'Failed to upload image')

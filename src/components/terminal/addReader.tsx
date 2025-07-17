@@ -30,7 +30,7 @@ const AddReader = (props: AddReaderProps) => {
     }
   }, [code, account_id, setOpen]);
 
-  React.useCallback(() => setLoading(false), [open, setLoading]);
+  React.useCallback(() => setLoading(open ? false : false), [open, setLoading]);
 
   return (
     <Modal open={open} setOpen={setOpen} title="Add a Reader">

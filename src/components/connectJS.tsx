@@ -55,7 +55,7 @@ const ConnectJS = (props: PropsWithChildren) => {
     if (account_id) {
       setStripeConnectInstance(cerateStripeConnectInstance());
     }
-  }, [fetchClientSecret, account_id, setStripeConnectInstance]);
+  }, [fetchClientSecret, account_id, setStripeConnectInstance, cerateStripeConnectInstance]);
 
   if (!stripeConnectInstance) {
     return <span>Loading...</span>;

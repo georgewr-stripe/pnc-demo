@@ -3,6 +3,7 @@
 import axios from "axios";
 import stripe from "./stripe";
 import { AccountBranding, BrandingFile } from "./types";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { StripeError } from "@stripe/stripe-js";
 import Stripe from "stripe";
 
@@ -36,6 +37,7 @@ const uploadBrandingFile = async (file: File, purpose: 'logo' | 'icon') : Promis
             purpose: purpose === 'logo' ? 'business_logo' : 'business_icon',
         });
         return stripeFile.id;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
     } catch (error: StripeError | any) {
         // Extract Stripe's specific error message
         if (error.type === 'StripeInvalidRequestError') {
@@ -107,6 +109,8 @@ const uploadBrandingImages = async (accountId: string, logoFile?: File, iconFile
   if (logoFile) {
     try {
       logoFileId = await uploadBrandingFile(logoFile, 'logo');
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       errors.push(`Logo: ${error.message}`);
     }
@@ -116,6 +120,8 @@ const uploadBrandingImages = async (accountId: string, logoFile?: File, iconFile
   if (iconFile) {
     try {
       iconFileId = await uploadBrandingFile(iconFile, 'icon');
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       errors.push(`Icon: ${error.message}`);
     }
@@ -156,6 +162,8 @@ const handleBrandingUpload = async (formData: FormData) : Promise<{ success: boo
       iconFileId: result.iconFileId
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error uploading branding files:', error);
     return { 

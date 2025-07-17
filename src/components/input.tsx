@@ -20,25 +20,32 @@ const Input = (props: InputProps) => {
     ? "ring-pnc-blue focus:ring-pnc-blue"
     : "text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500";
 
-  const inputParams = {
-    id,
-    type: props.type,
-    className:
-      "block w-full border-0 pl-2 py-1.5 pr-10  ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 " +
+  const inputParams = React.useMemo(
+    () => ({
+      id,
+      type: props.type,
+      className:
+        "block w-full border-0 pl-2 py-1.5 pr-10  ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 " +
+        inputColours,
+      placeholder: props.placeholder,
+      defaultValue: props.value || "",
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+        props.setValue(e.target.value),
+      "aria-describedby": "input-error",
+    }),
+    [
+      id,
+      props,
       inputColours,
-    placeholder: props.placeholder,
-    defaultValue: props.value || "",
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-      props.setValue(e.target.value),
-    "aria-describedby": "input-error",
-  };
+    ]
+  );
 
   const input = React.useMemo(() => {
     if (props.type === "currency") {
       return (
-        <CurrencyInput 
+        <CurrencyInput
           {...inputParams}
-          value={typeof props.value === 'number' ? props.value : undefined}
+          value={typeof props.value === "number" ? props.value : undefined}
           onChange={(cents: number) => props.setValue(cents)}
           onBlur={(cents: number) => props.setValue(cents)}
         />
@@ -46,7 +53,7 @@ const Input = (props: InputProps) => {
     } else {
       return <input {...inputParams} />;
     }
-  }, [props.type, props.value, props.setValue, inputParams]);
+  }, [inputParams, props]);
 
   return (
     <div>

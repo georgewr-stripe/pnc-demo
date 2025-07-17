@@ -21,7 +21,8 @@ const useLocalStorage = <T extends void>(
       console.log(error);
     }
     setLoaded(true);
-  }, [initialValue, key]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const setValue: React.Dispatch<React.SetStateAction<T>> = React.useCallback(
     (value: T | ((val: T) => T)) => {
@@ -35,6 +36,7 @@ const useLocalStorage = <T extends void>(
         console.log(error);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

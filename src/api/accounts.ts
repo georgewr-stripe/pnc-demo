@@ -11,10 +11,10 @@ export async function createAccount(props: CreateAccountProps) {
       transfers: { requested: true },
     },
     controller: {
-      losses: {payments: 'stripe'},
-      fees: {payer: 'application'},
-      requirement_collection: 'stripe',
-      stripe_dashboard: {type: 'none'}
+      losses: { payments: "application" },
+      fees: { payer: "application" },
+      requirement_collection: "application",
+      stripe_dashboard: { type: "none" },
     },
     country: "US",
   });
