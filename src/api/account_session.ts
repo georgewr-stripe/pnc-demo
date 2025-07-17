@@ -4,7 +4,6 @@ import { loadStripe } from "./stripe";
 
 export async function createAccountSession(account_id: string) {
   const session = await loadStripe(
-    "embedded_connect_beta=v2"
   ).accountSessions.create({
     account: account_id,
     components: {
