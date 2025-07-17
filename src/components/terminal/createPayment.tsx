@@ -36,7 +36,7 @@ const CreateTerminalPayment = (props: CreateTerminalPaymentProps) => {
     }
   }, [amount, account_id, readerID]);
 
-  React.useCallback(() => setLoading(false), [open]);
+  React.useCallback(() => setLoading(false), [open, setLoading]);
 
   return (
     <Modal open={open} setOpen={setOpen} title="Collect a Payment">
@@ -49,7 +49,7 @@ const CreateTerminalPayment = (props: CreateTerminalPaymentProps) => {
         <Input
           type="currency"
           value={"10.00"}
-          setValue={(v) => setAmount(formatAmount(v))}
+          setValue={(v) => setAmount(formatAmount(v as string))}
           title="Amount"
           valid={amount > 100}
           errorMessage="Please enter an amount"

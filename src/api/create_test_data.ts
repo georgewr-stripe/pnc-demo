@@ -7,7 +7,7 @@ const randomPrice = () => {
   return Math.floor(Math.random() * (50000 - 250 + 1) + 250);
 };
 
-const randomSelection = <T extends any>(list: T[]): T => {
+const randomSelection = <T>(list: T[]): T => {
   return list[Math.floor(Math.random() * list.length)];
 };
 

@@ -3,7 +3,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-const useLocalStorage = <T extends any>(
+const useLocalStorage = <T extends void>(
   key: string,
   initialValue: T
 ): [T, React.Dispatch<React.SetStateAction<T>>, boolean] => {
@@ -21,7 +21,7 @@ const useLocalStorage = <T extends any>(
       console.log(error);
     }
     setLoaded(true);
-  }, []);
+  }, [initialValue, key]);
 
   const setValue: React.Dispatch<React.SetStateAction<T>> = React.useCallback(
     (value: T | ((val: T) => T)) => {

@@ -1,6 +1,5 @@
 "use client";
 
-import Menu, { MenuProps } from "@/components/menu";
 import { PropsWithChildren } from "react";
 import ConnectJS from "@/components/connectJS";
 import React from "react";
@@ -25,7 +24,7 @@ const DashboardLayout = (props: PropsWithChildren) => {
     if (!account_id && loaded) {
       router.push("/signup");
     }
-  }, [account_id, loaded]);
+  }, [account_id, loaded, router]);
 
   return (
     <div className="flex flex-row justify-around w-full gap-4 pb-16 h-full">

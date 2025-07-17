@@ -5,13 +5,11 @@ import ConnectJS from "@/components/connectJS";
 import { useAccountData } from "@/hooks/useAccountData";
 import { ConnectAccountOnboarding } from "@stripe/react-connect-js";
 import { RefreshCw } from "lucide-react";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { readerInfo } from "../data";
 import Readers from "@/components/readers";
 
 const Onboard = () => {
-  const router = useRouter();
   const { account_id } = useAccountData();
 
   const [loading, setLoading] = React.useState(false);

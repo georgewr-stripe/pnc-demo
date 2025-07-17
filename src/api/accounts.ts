@@ -19,7 +19,7 @@ export async function createAccount(props: CreateAccountProps) {
     country: "US",
   });
 
-  const person = await stripe.accounts.createPerson(account.id, props.person);
+  await stripe.accounts.createPerson(account.id, props.person);
 
   return { account_id: account.id };
 }

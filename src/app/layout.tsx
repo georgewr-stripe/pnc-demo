@@ -4,7 +4,6 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import NavBar, { NavBarProps } from "@/components/navbar";
 import { AccountDataProvider } from "@/hooks/useAccountData";
-import { usePathname } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "PNC Payments Demo",

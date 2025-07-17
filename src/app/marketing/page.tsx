@@ -1,6 +1,5 @@
 "use client";
 
-import { CreateAccountProps } from "@/api/types";
 import { useAccountData } from "@/hooks/useAccountData";
 import { ChevronRight, RefreshCw } from "lucide-react";
 import Image from "next/image";
@@ -43,7 +42,7 @@ const Marketing = () => {
       });
       router.push("/onboard");
     }
-  }, [loading]);
+  }, [loading, setAccountData, router]);
 
   return (
     <div className="px-6 lg:px-8">

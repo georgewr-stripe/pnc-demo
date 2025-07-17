@@ -4,6 +4,7 @@ import { defaultAccountInfo } from "@/app/data";
 import { useAccountData } from "@/hooks/useAccountData";
 import { ChevronDown, LockIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const Header = () => {
@@ -14,9 +15,9 @@ const Header = () => {
   return (
     <div className="w-full h-16 flex flex-row bg-pnc-light-gray justify-between px-6">
       <div className="flex flex-row">
-        <a className="flex flex-row justify-center" href="/">
+        <Link className="flex flex-row justify-center" href="/">
           <Image src={"/logo.png"} height={200} width={150} alt="pnc logo" />
-        </a>
+        </Link>
         {dashboard ? (
           <div className="flex items-center pl-6">
             <span className="text-white text-sm">

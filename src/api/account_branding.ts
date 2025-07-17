@@ -3,6 +3,8 @@
 import axios from "axios";
 import stripe from "./stripe";
 import { AccountBranding, BrandingFile } from "./types";
+import { StripeError } from "@stripe/stripe-js";
+import Stripe from "stripe";
 
 const getBrandingFile = async (file_id: string) : Promise<BrandingFile> => {
     const file = await stripe.files.retrieve(file_id)
@@ -14,7 +16,7 @@ const getBrandingFile = async (file_id: string) : Promise<BrandingFile> => {
             'Authorization': 'Basic ' + btoa(process.env.STRIPE_SECRET_KEY + ':' || '')
         }})
         .then(response => {
-            let base64Image = `data:${response.headers['content-type']};base64,` + Buffer.from(response.data).toString('base64');
+            const base64Image = `data:${response.headers['content-type']};base64,` + Buffer.from(response.data).toString('base64');
             return base64Image
         })
          : '',
@@ -34,7 +36,7 @@ const uploadBrandingFile = async (file: File, purpose: 'logo' | 'icon') : Promis
             purpose: purpose === 'logo' ? 'business_logo' : 'business_icon',
         });
         return stripeFile.id;
-    } catch (error: any) {
+    } catch (error: StripeError | any) {
         // Extract Stripe's specific error message
         if (error.type === 'StripeInvalidRequestError') {
             throw new Error(error.message || 'Invalid file format or specifications');
@@ -71,7 +73,7 @@ const updateAccountBranding = async (
     iconFileId?: string;
   }
 ) : Promise<void> => {
-  const updateData: any = {
+  const updateData: Stripe.AccountUpdateParams = {
     settings: {
       branding: {}
     }
@@ -79,18 +81,18 @@ const updateAccountBranding = async (
 
   // Handle color updates
   if (updates.primary_color !== undefined) {
-    updateData.settings.branding.primary_color = updates.primary_color;
+    updateData.settings!.branding!.primary_color = updates.primary_color;
   }
   if (updates.secondary_color !== undefined) {
-    updateData.settings.branding.secondary_color = updates.secondary_color;
+    updateData.settings!.branding!.secondary_color = updates.secondary_color;
   }
 
   // Handle image updates
   if (updates.logoFileId !== undefined) {
-    updateData.settings.branding.logo = updates.logoFileId;
+    updateData.settings!.branding!.logo = updates.logoFileId;
   }
   if (updates.iconFileId !== undefined) {
-    updateData.settings.branding.icon = updates.iconFileId;
+    updateData.settings!.branding!.icon = updates.iconFileId;
   }
 
   await stripe.accounts.update(account_id, updateData);

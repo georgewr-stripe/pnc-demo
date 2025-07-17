@@ -26,7 +26,7 @@ const Menu = (props: MenuProps) => {
       <div className="bg-pnc-orange text-white p-4 flex justify-center">
         <span className="text-lg font-semibold text-center ">{title}</span>
       </div>
-      {Object.entries(items).map(([title, subtitles], i) => (
+      {Object.entries(items).map(([title, subtitles]) => (
         <div className="flex flex-col" key={title}>
           <div
             onClick={() => handleSelect(title)}

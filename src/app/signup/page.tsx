@@ -2,7 +2,7 @@
 
 import { CreateAccountProps } from "@/api/types";
 import { useAccountData } from "@/hooks/useAccountData";
-import { ChevronRight, RefreshCw } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { defaultAccountInfo, onboardingTypes } from "../data";
@@ -25,7 +25,7 @@ const SignUp = () => {
         router.push("/onboard");
       }
     },
-    [loading]
+    [loading, setAccountData, router]
   );
 
   return (

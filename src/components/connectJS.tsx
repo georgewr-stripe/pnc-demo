@@ -46,7 +46,7 @@ const ConnectJS = (props: PropsWithChildren) => {
         },
       ],
     });
-  }, [fetchClientSecret]);
+  }, [fetchClientSecret, PUBLIC_KEY]);
 
   const [stripeConnectInstance, setStripeConnectInstance] =
     React.useState<StripeConnectInstance>();
@@ -55,7 +55,7 @@ const ConnectJS = (props: PropsWithChildren) => {
     if (account_id) {
       setStripeConnectInstance(cerateStripeConnectInstance());
     }
-  }, [fetchClientSecret]);
+  }, [fetchClientSecret, account_id, setStripeConnectInstance]);
 
   if (!stripeConnectInstance) {
     return <span>Loading...</span>;

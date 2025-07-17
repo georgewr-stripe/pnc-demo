@@ -46,7 +46,7 @@ const Input = (props: InputProps) => {
     } else {
       return <input {...inputParams} />;
     }
-  }, [props.type, props.value, props.setValue]);
+  }, [props.type, props.value, props.setValue, inputParams]);
 
   return (
     <div>

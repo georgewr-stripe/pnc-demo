@@ -16,7 +16,7 @@ const processTerminalPayment = async (props: ProcessTerminalPaymentProps) => {
     }
   );
   console.log(props)
-  const reader = await stripe.terminal.readers.processPaymentIntent(
+  await stripe.terminal.readers.processPaymentIntent(
     terminal_id,
     {
       payment_intent: intent.id,

@@ -34,8 +34,8 @@ const Readers = (props: ReaderInfo) => {
       </div>
 
       <div className="flex flex-col bg-slate-100 grow">
-        {props.specs.map((spec) => (
-          <div className="border-b-2 border-white flex flex-row justify-between p-2 min-w-48 items-middle grow">
+        {props.specs.map((spec, _) => (
+          <div key={_} className="border-b-2 border-white flex flex-row justify-between p-2 min-w-48 items-middle grow">
             <Zap className="text-pnc-blue size-4" />
             <span className="text-sm text-pnc-blue">{spec}</span>
           </div>

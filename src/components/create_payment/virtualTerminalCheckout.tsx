@@ -65,7 +65,7 @@ const VirtualTerminalCheckout = (props: VTCProps) => {
     );
     props.setIntent(intent);
     setLoading(false);
-  }, [data, stripe, elements]);
+  }, [data, stripe, elements, account_id, props.setIntent]);
 
   return (
     <div className="flex flex-col">

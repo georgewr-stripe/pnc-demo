@@ -22,15 +22,15 @@ const AddReader = (props: AddReaderProps) => {
   const addReader = React.useCallback(async () => {
     if (code && account_id) {
       setLoading(true);
-      const reader = await registerReader({
+      await registerReader({
         account_id,
         registration_code: code,
       });
       setOpen(false);
     }
-  }, [code, account_id]);
+  }, [code, account_id, setOpen]);
 
-  React.useCallback(() => setLoading(false), [open]);
+  React.useCallback(() => setLoading(false), [open, setLoading]);
 
   return (
     <Modal open={open} setOpen={setOpen} title="Add a Reader">
@@ -43,7 +43,7 @@ const AddReader = (props: AddReaderProps) => {
         <Input
           type="text"
           value={code}
-          setValue={setCode}
+          setValue={(value) => setCode(value as string)}
           title="Pairing Code"
           valid={true}
           errorMessage="Code not valid"

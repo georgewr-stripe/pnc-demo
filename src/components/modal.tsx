@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -6,7 +6,6 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { Check } from "lucide-react";
 
 export interface ModalProps extends PropsWithChildren {
   open: boolean;

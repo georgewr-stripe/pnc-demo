@@ -24,7 +24,7 @@ const SideBar = (props: SideBarProps) => {
     if (item) {
       setSelected(props.items.indexOf(item));
     }
-  }, [pathname]);
+  }, [pathname, props.items]);
 
   return (
     <div className="bg-pnc-orange h-full flex flex-col">
